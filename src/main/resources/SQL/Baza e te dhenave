@@ -1,0 +1,204 @@
+CREATE TYPE gjinia_t AS ENUM ('M', 'F');
+CREATE TYPE statusi_t AS ENUM ('Pending', 'Approved', 'Rejected','Cancelled','Completed');
+CREATE TYPE dita_javes_t AS ENUM ('Hënë', 'Martë', 'Mërkurë', 'Enjte', 'Premte', 'Shtunë', 'Dielë');
+CREATE TYPE days_of_week AS ENUM ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+CREATE TYPE roli_t AS ENUM ('student', 'profesor','staf_administrativ');
+
+CREATE TABLE nivelet(
+    id SERIAL PRIMARY KEY,
+    niveli VARCHAR(30) NOT NULL UNIQUE,
+	niveli_english VARCHAR(30) NOT NULL UNIQUE
+);
+
+CREATE TABLE shtetet(
+	id SERIAL PRIMARY KEY,
+	shteti VARCHAR(50) NOT NULL ,
+	shteti_english VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE lendet(
+	id SERIAL PRIMARY KEY,
+	emri VARCHAR(120) NOT NULL,
+	emri_english VARCHAR(120) NOT NULL
+);
+
+CREATE TABLE drejtimet(
+	id SERIAL PRIMARY KEY,
+	drejtimi VARCHAR(80),
+	drejtimi_english VARCHAR(80)
+);
+
+CREATE TABLE drejtimet_nivelet_semestrat(
+	id SERIAL PRIMARY KEY,
+	id_drejtimi INTEGER REFERENCES drejtimet (id) ON DELETE CASCADE,
+	id_niveli INTEGER REFERENCES nivelet (id) ON DELETE CASCADE,
+	semestri INTEGER CHECK (semestri BETWEEN 1 AND 6)
+);
+
+CREATE TABLE passwords (
+    id SERIAL PRIMARY KEY,
+    password_hash CHAR(128) NOT NULL,
+    salt CHAR(50) NOT NULL,
+    iterations INTEGER NOT NULL,
+    hash_function VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE perdoruesit(
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(50),
+	id_passw INTEGER REFERENCES passwords(id) ON DELETE CASCADE,
+	roli roli_t NOT NULL DEFAULT 'student'
+);
+
+CREATE TABLE studentat(
+	id SERIAL PRIMARY KEY,
+	numri_personal VARCHAR(10) NOT NULL UNIQUE,
+	gjinia gjinia_t NOT NULL,
+	emri VARCHAR(30) NOT NULL,
+	mbiemri VARCHAR(30) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	numri_telefonit VARCHAR(15) NOT NULL,
+	prejardhja INTEGER REFERENCES shtetet(id) ON DELETE SET NULL,
+	studimi INTEGER REFERENCES drejtimet_nivelet_semestrat(id) ON DELETE SET NULL,
+	perdoruesi INTEGER REFERENCES perdoruesit(id),
+	student_aktiv BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE profesoret(
+	id SERIAL PRIMARY KEY,
+	numri_personal VARCHAR(10) NOT NULL UNIQUE,
+	gjinia gjinia_t NOT NULL,
+	emri VARCHAR(30) NOT NULL,
+	mbiemri VARCHAR(30) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	numri_telefonit VARCHAR(15) NOT NULL,
+	prejardhja INTEGER REFERENCES shtetet(id) ON DELETE SET NULL,
+	perdoruesi INTEGER REFERENCES perdoruesit(id),
+	kabineti_personal INTEGER,
+	profesor_aktiv BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE profesoret_lendet(
+	id SERIAL PRIMARY KEY,
+	id_profesori INTEGER REFERENCES profesoret(id),
+    id_lenda INTEGER REFERENCES lendet(id),
+	UNIQUE (id_profesori, id_lenda)
+);
+
+CREATE TABLE drejtimet_nivelet_semestrat_lendet(
+	id SERIAL PRIMARY KEY,
+	id_drejtimi_niveli_semestri INTEGER REFERENCES drejtimet_nivelet_semestrat(id),
+	id_profesori_lenda INTEGER REFERENCES profesoret_lendet(id) ON DELETE SET NULL,
+	UNIQUE (id_drejtimi_niveli_semestri, id_profesori_lenda)
+);
+
+CREATE TABLE oraret(
+	id SERIAL PRIMARY KEY,
+	id_drejtimi_niveli_semestri_lenda INTEGER REFERENCES drejtimet_nivelet_semestrat_lendet(id),
+	dita dita_javes_t NOT NULL,
+	dita_english days_of_week NOT NULL,
+	ora_fillimit TIME NOT NULL,
+    ora_mbarimit TIME NOT NULL,
+	statusi_aktiv BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE oraret_data (
+	id SERIAL PRIMARY KEY,
+	id_orari INTEGER REFERENCES oraret(id) ON DELETE CASCADE,
+	data DATE NOT NULL,
+	orari_valid BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE terminet(
+	id SERIAL PRIMARY KEY,
+	id_orari INTEGER REFERENCES oraret_data(id) ON DELETE CASCADE,
+	id_studenti INTEGER REFERENCES studentat(id) ON DELETE CASCADE,
+	intervali_kohor TIMESTAMP,
+	arsyeja VARCHAR(255) NOT NULL,
+	rezervuar BOOLEAN DEFAULT true
+);
+
+CREATE TABLE stafi_administrativ(
+	id SERIAL PRIMARY KEY,
+	numri_personal VARCHAR(10) NOT NULL UNIQUE,
+	gjinia gjinia_t NOT NULL,
+	emri VARCHAR(30) NOT NULL,
+	mbiemri VARCHAR(30) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	numri_telefonit VARCHAR(15) NOT NULL,
+	prejardhja INTEGER REFERENCES shtetet(id) ON DELETE SET NULL,
+	perdoruesi INTEGER REFERENCES perdoruesit(id),
+	titulli VARCHAR(100)
+);
+
+CREATE TABLE vleresimi (
+id SERIAL PRIMARY KEY,
+emertimi VARCHAR(25)
+);
+
+CREATE TABLE feedback (
+id_profesori INTEGER REFERENCES profesoret_lendet(id) ON DELETE CASCADE,
+id_studenti INTEGER REFERENCES studentat(id) ON DELETE CASCADE,
+    id SERIAL PRIMARY KEY,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    vleresimi INTEGER REFERENCES vleresimi(id),
+    komenti TEXT
+);
+
+
+--Gjeneron oraret_data per 14 ditet e ardhshme ne baze te orareve tek tabela oraret
+CREATE OR REPLACE FUNCTION generate_oraret_data()
+RETURNS void AS $$
+DECLARE
+    current_date DATE := CURRENT_DATE;
+    i INTEGER;
+    date_to_check DATE;
+    orari RECORD;
+BEGIN
+    FOR i IN 0..13 LOOP
+        date_to_check := current_date + i;
+
+        FOR orari IN
+            SELECT id, dita_english
+            FROM oraret
+            WHERE statusi_aktiv = TRUE
+        LOOP
+            IF LOWER(TRIM(to_char(date_to_check, 'Day'))) = LOWER(TRIM(orari.dita_english::text)) THEN
+                INSERT INTO oraret_data (id_orari, data)
+                VALUES (orari.id, date_to_check)
+                ON CONFLICT DO NOTHING;
+            END IF;
+        END LOOP;
+
+    END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- Largon oraret_data qe kane kaluar
+CREATE OR REPLACE FUNCTION invalidate_past_oraret_data()
+RETURNS void AS $$
+BEGIN
+    UPDATE oraret_data
+    SET orari_valid = FALSE
+    WHERE data < CURRENT_DATE
+      AND orari_valid = TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+-- Largon terminet qe kane kaluar
+
+CREATE OR REPLACE FUNCTION deactivate_expired_terminet()
+RETURNS void AS $$
+BEGIN
+    UPDATE terminet t
+    SET rezervuar = FALSE
+    FROM oraret_data od
+    JOIN oraret o ON od.id_orari = o.id
+    WHERE t.id_orari = od.id
+      AND t.rezervuar = TRUE
+      AND (od.data + o.ora_mbarimit) < NOW();
+END;
+$$ LANGUAGE plpgsql;

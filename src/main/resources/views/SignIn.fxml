@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignInController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+   <children>
+      <Label layoutX="129.0" layoutY="99.0" text="%lbl.user">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Username" layoutX="246.0" layoutY="97.0" prefHeight="26.0" prefWidth="210.0" />
+      <Label layoutX="129.0" layoutY="167.0" text="%lbl.password">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="332.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleForgotPass" text="%btn.forgotPass" />
+      <Label layoutX="214.0" layoutY="272.0" text="%lbl.chooseRole">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="Student" layoutX="87.0" layoutY="306.0" mnemonicParsing="false" text="%chckbx.student" />
+      <CheckBox fx:id="Professor" layoutX="239.0" layoutY="306.0" mnemonicParsing="false" text="%chckbx.professor" />
+      <CheckBox fx:id="Admin" layoutX="388.0" layoutY="306.0" mnemonicParsing="false" text="%chckbx.administrator" />
+      <Button layoutX="459.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" text="%btn.gjuha" />
+      <Button layoutX="51.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleGoBack" text="%btn.back" />
+         <Button layoutX="468.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: #FFB3B3;" text="%btn.signIn" />
+      <Label fx:id="errorUsernameLabel" layoutX="380.0" layoutY="130.0" style="-fx-text-fill: red;" text="">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorPasswordLabel" layoutX="380.0" layoutY="198.0" style="-fx-text-fill: red;" text="">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+         <PasswordField fx:id="Password" layoutX="248.0" layoutY="165.0" prefHeight="26.0" prefWidth="210.0" />
+   </children>
+</AnchorPane>
+</StackPane>
