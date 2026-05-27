@@ -49,9 +49,9 @@ public class ChangePasswordController extends BaseController{
 
             SessionManager.getInstance().setUsername(username);
             SceneManager.load(SceneLocator.REDIRECT_CHANGE_PASSWORD);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR,"Error","There was a problem! Please try again!");
+            showAlert(Alert.AlertType.ERROR, "Error", "There was a problem! Please try again!");
         }
 
     }
