@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterProfesorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+   <children>
+      <Label layoutX="100.0" layoutY="70.0" text="%lbl.personalNum">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField layoutX="245.0" layoutY="66.0" prefHeight="26.0" prefWidth="210.0"  fx:id="personalNumber"/>
+      <Label layoutX="142.0" layoutY="203.0" text="%lbl.email">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField layoutX="246.0" layoutY="200.0" prefHeight="26.0" prefWidth="209.0" fx:id="email"  />
+      <Label layoutX="120.0" layoutY="303.0" text="%lbl.gender">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="246.0" layoutY="304.0" mnemonicParsing="false" text="%chckbx.female" fx:id="female"/>
+      <CheckBox layoutX="372.0" layoutY="304.0" mnemonicParsing="false" text="%chckbx.male" fx:id="male" />
+      <TextField layoutX="246.0" layoutY="249.0" prefHeight="26.0" prefWidth="209.0" fx:id="phoneNumber"/>
+      <Label layoutX="144.0" layoutY="109.0" text="%lbl.name">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="132.0" layoutY="154.0" text="%lbl.surname">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="252.0" text="%lbl.telephone">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField layoutX="245.0" layoutY="106.0" prefHeight="26.0" prefWidth="209.0" fx:id="firstName"/>
+      <TextField layoutX="246.0" layoutY="151.0" prefHeight="26.0" prefWidth="209.0" fx:id="lastName"/>
+      <Button layoutX="462.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" text="%btn.gjuha" />
+      <Button layoutX="39.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleGoBack" text="%btn.back" />
+         <Button layoutX="462.0" layoutY="342.0" mnemonicParsing="false" style="-fx-background-color: #FFB3B3;" text="%btn.register" onAction="#handleRegisterProfessor"/>
+      <Label fx:id="errorGenderLabel" layoutX="300.0" layoutY="330.0" style="-fx-text-fill: red;" text="">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
+</StackPane>

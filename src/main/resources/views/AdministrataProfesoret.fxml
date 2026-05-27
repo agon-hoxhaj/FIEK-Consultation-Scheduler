@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataProfesoretController">
+   <children>
+      <ScrollPane fx:id="scrollPane" layoutX="166.0" layoutY="66.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <FlowPane fx:id="flowPane" prefHeight="399.0" prefWidth="598.0">
+               <children>
+                   <BarChart fx:id="barChart" layoutX="50" layoutY="50" prefHeight="327.0" prefWidth="538.0" title="%txt.Statistika">
+                       <xAxis>
+                           <CategoryAxis fx:id="xAxis" label="Drejtimet" />
+                       </xAxis>
+                       <yAxis>
+                           <NumberAxis fx:id="yAxis" label="Numri i profesoreve" />
+                       </yAxis>
+                   </BarChart>
+               </children></FlowPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

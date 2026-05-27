@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriTerminetContoller">
+        <TableView fx:id="terminet" prefHeight="500" prefWidth="1100.0" VBox.vgrow="always">
+            <columns>
+                <TableColumn fx:id="koha" minWidth="200.0" prefWidth="250.0" text="%txt.termini" />
+                <TableColumn fx:id="lendatermini" minWidth="350.0" prefWidth="400.0" text="%txt.lenda" />
+                <TableColumn fx:id="st" minWidth="100.0" prefWidth="150.0" text="%btn.studentat" />
+                <TableColumn fx:id="arsyea" minWidth="200.0" prefWidth="300.0" text="%txt.arsyeja" />
+            </columns>
+        </TableView>
+    </VBox>

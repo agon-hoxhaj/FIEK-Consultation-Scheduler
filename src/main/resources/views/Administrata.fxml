@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.08584337349397592" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataController">
+  <items>
+    <AnchorPane maxHeight="30.0" minHeight="30.0" minWidth="0.0" prefHeight="57.0" prefWidth="598.0" style="-fx-background-color: gray;">
+         <children>
+            <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: white;" text="%btn.sign_out" textAlignment="CENTER" />
+            <Text fill="WHITE" layoutX="254.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="241.43193359375005">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Button layoutX="523.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: lightblue;" text="%btn.gjuha" textAlignment="CENTER" AnchorPane.rightAnchor="1.799999999999983" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <SplitPane dividerPositions="0.2543449197860962" layoutX="-1.0" layoutY="3.0" prefHeight="361.6" prefWidth="598.4" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-0.7999999999999545" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.1999999999999886">
+              <items>
+                <AnchorPane maxWidth="150.0" minWidth="190.0" prefWidth="190.0" style="-fx-background-color: lightgrey;">
+                     <children>
+                        <Button layoutX="5.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleProfesoriClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.Profesoret" textAlignment="CENTER" />
+                        <Button layoutX="5.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleStudentiClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.Studentat" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="416.0">
+                     <children>
+                        <ScrollPane fx:id="rightPane" layoutX="122.0" layoutY="1.0" prefHeight="360.8" prefWidth="443.2" AnchorPane.bottomAnchor="-0.8000000000000114" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.599999999999966" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

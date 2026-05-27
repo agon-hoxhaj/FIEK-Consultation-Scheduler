@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChangePasswordController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+   <children>
+      <Label layoutX="160.0" layoutY="118.0" text="%lbl.user">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="user" layoutX="292.0" layoutY="114.0" />
+      <Label layoutX="121.0" layoutY="207.0" text="%lbl.personalNum">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="personalNumber" layoutX="292.0" layoutY="203.0" />
+      <Button fx:id="changePassword" layoutX="391.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleChangePass" style="-fx-background-color: #FFB3B3;" text="%btn.changePass" />
+      <Button layoutX="413.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" text="%btn.gjuha" />
+      <Button layoutX="74.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoBack" text="%btn.back" />
+      <Label fx:id="errorUsernameLabel" layoutX="380.0" layoutY="140.0" style="-fx-text-fill: red;" text="">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorPersonalNumLabel" layoutX="380.0" layoutY="230.0" style="-fx-text-fill: red;" text="">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
+</StackPane>

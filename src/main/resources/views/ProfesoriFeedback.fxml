@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriFeedbackController">
+
+    <VBox alignment="CENTER" layoutX="50" layoutY="30" spacing="20.0">
+        <Label style="-fx-font-size: 18px;" text="%lbl.receivedFeedback" />
+
+        <TableView fx:id="feedbackTable" prefHeight="250" prefWidth="500">
+            <columns>
+                <TableColumn fx:id="commentColumn" prefWidth="350" text="%col.comment" />
+                <TableColumn fx:id="evaluationColumn" prefWidth="150.0" text="%col.evaluation" />
+            </columns>
+        </TableView>
+    </VBox>
+
+</AnchorPane>

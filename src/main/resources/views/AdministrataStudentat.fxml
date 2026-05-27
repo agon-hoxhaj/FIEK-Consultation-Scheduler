@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+
+<ScrollPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataStudentatController">
+   <content>
+      <FlowPane prefHeight="400.0" prefWidth="598.0">
+         <children>
+            <PieChart fx:id="pieChart" prefHeight="500" prefWidth="700" />
+         </children>
+      </FlowPane>
+   </content>
+</ScrollPane>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriStudentatController">
+    <VBox prefWidth="1000" prefHeight="700" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+        <Label text="Studentët e profesorit" style="-fx-font-size: 24px; -fx-padding: 10px;" />
+        <TableView fx:id="studentTable" prefHeight="600">
+            <columns>
+                <TableColumn text="ID" fx:id="colId" />
+                <TableColumn text="Emri" fx:id="colEmri" />
+                <TableColumn text="Mbiemri" fx:id="colMbiemri" />
+                <TableColumn text="Email" fx:id="colEmail" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

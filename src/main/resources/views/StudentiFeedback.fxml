@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentiFeedbackController">
+
+    <VBox alignment="CENTER" layoutX="100" layoutY="50" spacing="15.0">
+        <Label style="-fx-font-size: 18px;" text="%lbl.giveFeedback" />
+
+        <TextArea fx:id="komentiField" prefHeight="100" prefWidth="400" promptText="%txta.writeComment" wrapText="true" />
+
+        <ComboBox fx:id="vleresimiCombo" prefWidth="200" promptText="%cmbbx.selectEvaluation" />
+
+    </VBox>
+
+     <Button layoutX="255.0" layoutY="343.0" onAction="#handleSubmitFeedback" text="%btn.send" />
+    <ComboBox fx:id="profesoriCombo" layoutX="201.0" layoutY="251.0" prefWidth="200" promptText="%cmbbx.selectProfessor" />
+    <ComboBox fx:id="lendaCombo" layoutX="200.0" layoutY="291.0" prefWidth="200" promptText="%cmbbx.selectSubject" />
+
+</AnchorPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="ProfesoriOraret" prefHeight="546.0" prefWidth="610.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriOraretController">
+   <children>
+      <ChoiceBox fx:id="choiceBoxProfesoriOraret" value="%txt.vleraFillestareLendet" layoutX="137.0" layoutY="6.0" maxWidth="600.0" minWidth="179.0" prefHeight="31.0" prefWidth="345.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="168.59999999999997" AnchorPane.topAnchor="6.0" />
+      <Text fill="WHITE" layoutX="42.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.lenda" textAlignment="CENTER" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="522.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <FlowPane fx:id="flowPaneProfesoriOraret" hgap="20" layoutX="200.0" layoutY="44.8" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: white;" vgap="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
+      <Button onAction="#handleShtoOrarClick" layoutX="500.0" layoutY="6.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: black;" text="%btn.shtoOrar" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="8.354589843749977" AnchorPane.topAnchor="6.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

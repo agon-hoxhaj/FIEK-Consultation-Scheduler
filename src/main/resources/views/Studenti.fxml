@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.08584337349397592" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentiPageController">
+    <items>
+        <!-- Top Bar -->
+        <AnchorPane maxHeight="30.0" minHeight="30.0" prefHeight="57.0" prefWidth="598.0" style="-fx-background-color: gray;">
+            <children>
+                <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: white;" text="%btn.sign_out" textAlignment="CENTER" />
+
+                <Text fill="WHITE" layoutX="263.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" textAlignment="CENTER" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="262.6">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Text>
+
+                <Button layoutX="457.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: lightblue;" text="%btn.gjuha" textAlignment="CENTER" AnchorPane.rightAnchor="2.0" />
+            </children>
+        </AnchorPane>
+
+        <!-- Body SplitPane -->
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <children>
+                <SplitPane dividerPositions="0.3119973190348525" layoutX="-1.0" layoutY="3.0" prefHeight="361.6" prefWidth="598.4" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-0.8" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.2">
+                    <items>
+                        <!-- Left Menu -->
+                        <AnchorPane maxWidth="190.0" minWidth="190.0" prefHeight="361.0" prefWidth="190.0" style="-fx-background-color: lightgrey;">
+                            <children>
+                                <Button fx:id="lendetProf" layoutX="5.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLendetClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.lendet" textAlignment="CENTER" />
+
+                                <Button fx:id="konsultTerm" layoutX="5.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleKonsultimetTerminetClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.konsultimetTerminet" textAlignment="CENTER" />
+
+                                <Button fx:id="feedback" layoutX="5.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleFeedbackClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.pershtypje" textAlignment="CENTER" />
+                            </children>
+                        </AnchorPane>
+
+                        <!-- Right Content -->
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="416.0">
+                            <children>
+                                <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="360.8" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <ScrollPane fx:id="rightPane" fitToHeight="true" fitToWidth="true" layoutX="104.0" layoutY="80.0" prefHeight="360.8" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>
