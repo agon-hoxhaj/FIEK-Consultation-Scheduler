@@ -13,7 +13,7 @@ public class UserService extends BaseService<User, CreateUserDto, UpdateUserDto,
     private PasswordsRepository passwordsRepository;
 
     public UserService(){
-        super("perdoruesit", new UryserReposito());
+        super("perdoruesit", new UserRepository());
         this.userRepository = this.modelRepository;
         this.passwordsRepository = new PasswordsRepository();
     }
