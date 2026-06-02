@@ -1,7 +1,6 @@
 package controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import services.SceneManager;
 import utils.SceneLocator;
@@ -12,7 +11,16 @@ public class AdministrataController extends BaseController {
     private ScrollPane rightPane;
 
     @FXML
-    private void handleProfesoriClick(){
+    public void handleDashboardClick() {
+        try {
+            SceneManager.load(SceneLocator.DASHBOARD, rightPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleProfesoriClick() {
         try {
             SceneManager.load(SceneLocator.ADMINISTRATA_PROFESOERT, rightPane);
         } catch (Exception e) {
@@ -21,10 +29,11 @@ public class AdministrataController extends BaseController {
     }
 
     @FXML
-    private void handleStudentiClick(){
-        try{
-             SceneManager.load(SceneLocator.ADMINISTRATA_STUDENTAT, rightPane);
-    }catch(Exception e){
-        e.printStackTrace();}
+    private void handleStudentiClick() {
+        try {
+            SceneManager.load(SceneLocator.ADMINISTRATA_STUDENTAT, rightPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

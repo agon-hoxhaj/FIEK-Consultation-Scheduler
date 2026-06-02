@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToWidth="true" prefHeight="600.0" prefWidth="760.0"
+            style="-fx-background-color: transparent; -fx-background: #121212; -fx-border-color: transparent;"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.DashboardController">
+    <content>
+        <VBox spacing="18.0" style="-fx-background-color: #121212;">
+            <padding><Insets bottom="20.0" left="20.0" right="20.0" top="15.0"/></padding>
+            <children>
+
+                <!-- Title -->
+                <Label text="Dashboard" textFill="WHITE">
+                    <font><Font name="System Bold" size="18.0"/></font>
+                </Label>
+
+                <!-- ═══ KPI CARDS ═══ -->
+                <HBox spacing="12.0">
+                    <children>
+                        <VBox fx:id="cardStudentat" alignment="CENTER" prefHeight="80.0" prefWidth="170.0" spacing="4.0"
+                              style="-fx-background-color: #1E1E1E; -fx-background-radius: 10; -fx-border-color: #2D2D2D; -fx-border-radius: 10;">
+                            <children>
+                                <Label fx:id="lblTotalStudentat" text="0" textFill="#FFB3B3">
+                                    <font><Font name="System Bold" size="28.0"/></font>
+                                </Label>
+                                <Label text="Total Students" textFill="#888888">
+                                    <font><Font size="11.0"/></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="cardTerminet" alignment="CENTER" prefHeight="80.0" prefWidth="170.0" spacing="4.0"
+                              style="-fx-background-color: #1E1E1E; -fx-background-radius: 10; -fx-border-color: #2D2D2D; -fx-border-radius: 10;">
+                            <children>
+                                <Label fx:id="lblTotalTerminet" text="0" textFill="#A3D5FF">
+                                    <font><Font name="System Bold" size="28.0"/></font>
+                                </Label>
+                                <Label text="Active Appointments" textFill="#888888">
+                                    <font><Font size="11.0"/></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="cardProfesoret" alignment="CENTER" prefHeight="80.0" prefWidth="170.0" spacing="4.0"
+                              style="-fx-background-color: #1E1E1E; -fx-background-radius: 10; -fx-border-color: #2D2D2D; -fx-border-radius: 10;">
+                            <children>
+                                <Label fx:id="lblTotalProfesoret" text="0" textFill="#CAFFBF">
+                                    <font><Font name="System Bold" size="28.0"/></font>
+                                </Label>
+                                <Label text="Professors" textFill="#888888">
+                                    <font><Font size="11.0"/></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox fx:id="cardFeedback" alignment="CENTER" prefHeight="80.0" prefWidth="170.0" spacing="4.0"
+                              style="-fx-background-color: #1E1E1E; -fx-background-radius: 10; -fx-border-color: #2D2D2D; -fx-border-radius: 10;">
+                            <children>
+                                <Label fx:id="lblAvgRating" text="0.0" textFill="#D0BFFF">
+                                    <font><Font name="System Bold" size="28.0"/></font>
+                                </Label>
+                                <Label text="Avg. Feedback Rating" textFill="#888888">
+                                    <font><Font size="11.0"/></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <Separator style="-fx-background-color: #2D2D2D; -fx-opacity: 0.5;"/>
+
+                <!-- ═══ CHARTS ROW ═══ -->
+                <HBox spacing="14.0">
+                    <children>
+                        <!-- BarChart -->
+                        <TitledPane animated="false" collapsible="false" text="Professors per Department"
+                                    style="-fx-text-fill: #FFB3B3; -fx-font-weight: bold; -fx-background-color: #1A1A1A; -fx-border-color: #2D2D2D; -fx-border-radius: 8; -fx-background-radius: 8;"
+                                    prefWidth="360.0" HBox.hgrow="ALWAYS">
+                            <content>
+                                <BarChart fx:id="barChart" legendVisible="false" prefHeight="260.0"
+                                          style="-fx-background-color: transparent;"
+                                          stylesheets="@../Styles/chartStyle.css">
+                                    <xAxis><CategoryAxis fx:id="xAxis"/></xAxis>
+                                    <yAxis><NumberAxis fx:id="yAxis"/></yAxis>
+                                </BarChart>
+                            </content>
+                        </TitledPane>
+
+                        <!-- PieChart -->
+                        <TitledPane animated="false" collapsible="false" text="Students per Department"
+                                    style="-fx-text-fill: #FFB3B3; -fx-font-weight: bold; -fx-background-color: #1A1A1A; -fx-border-color: #2D2D2D; -fx-border-radius: 8; -fx-background-radius: 8;"
+                                    prefWidth="360.0" HBox.hgrow="ALWAYS">
+                            <content>
+                                <PieChart fx:id="pieChart" labelsVisible="true" legendVisible="false"
+                                          prefHeight="260.0" style="-fx-background-color: transparent;"
+                                          stylesheets="@../Styles/chartStyle.css"/>
+                            </content>
+                        </TitledPane>
+                    </children>
+                </HBox>
+
+                <Separator style="-fx-background-color: #2D2D2D; -fx-opacity: 0.5;"/>
+
+                <!-- ═══ AI INSIGHT ═══ -->
+                <TitledPane animated="false" collapsible="false" text="🤖  AI Insight — Smart Recommendations"
+                            style="-fx-text-fill: #D0BFFF; -fx-font-weight: bold; -fx-background-color: #1A1A1A; -fx-border-color: #3A2D5A; -fx-border-radius: 8; -fx-background-radius: 8;">
+                    <content>
+                        <VBox spacing="8.0" style="-fx-padding: 12;">
+                            <children>
+                                <Label fx:id="lblAiInsight" textFill="#CCCCCC" wrapText="true"
+                                       text="Analyzing data..."
+                                       style="-fx-font-size: 12px;"/>
+                                <FlowPane fx:id="aiTagsPane" hgap="8.0" vgap="6.0"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

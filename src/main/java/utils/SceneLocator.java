@@ -22,4 +22,5 @@ public class SceneLocator {
     public static final String REGISTER_PROFESSOR = "/views/RegisterProfesori.fxml";
     public static final String REGISTER_ADMIN = "/views/RegisterAdmin.fxml";
     public static final String SHTO_ORAR = "/views/ProfesoriShtoOrar.fxml";
+    public static final String DASHBOARD = "/views/Dashboard.fxml";
 }
