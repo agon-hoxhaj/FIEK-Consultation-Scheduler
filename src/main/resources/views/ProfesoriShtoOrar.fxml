@@ -3,70 +3,99 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriShtoOrarController">
-    <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <VBox alignment="CENTER" spacing="20">
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%btn.shtoOrar">
-            <font>
-               <Font name="System Bold" size="29.0" />
-            </font>
-         </Text>
-            <HBox alignment="CENTER" spacing="10.0">
-            <Pane>
-               <children>
-                       <Label layoutX="9.0" layoutY="2.0" text="%txt.lenda">
-                           <font>
-                        <Font size="16.0" />
-                     </font>
-                       </Label>
-                       <Text layoutX="9.0" layoutY="65.0" text="%txt.dita">
-                           <font>
-                        <Font size="16.0" />
-                     </font>
-                       </Text>
-                       <Text layoutX="9.0" layoutY="107.0" text="%txt.ora">
-                           <font>
-                        <Font size="16.0" />
-                     </font>
-                       </Text>
-               </children>
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-            </Pane>
-            <Pane prefHeight="142.0" prefWidth="420.0">
-               <children>
-                       <ChoiceBox fx:id="lendaChoiceBox" layoutX="13.0" layoutY="2.0" prefHeight="25.0" prefWidth="403.0" />
-                       <ChoiceBox fx:id="ditaChoiceBox" layoutX="76.0" layoutY="46.0" prefHeight="25.0" prefWidth="267.0" />
-   
-                          <!-- Spinner për orë dhe minuta -->
-                       <HBox alignment="CENTER" layoutX="97.0" layoutY="83.0" spacing="10">
-                           <Spinner fx:id="hourSpinner" prefHeight="26.0" prefWidth="100.0" />
-                           <Label text=":" />
-                           <Spinner fx:id="minuteSpinner" prefWidth="100.0" />
-                       </HBox>
-                  <Text layoutX="49.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.pershkrim" textAlignment="CENTER" />
-               </children>
-            </Pane>
-            </HBox>
-            
-            <HBox fx:id="hbox" alignment="CENTER" spacing="20">
-                <Button fx:id="ok" onAction="#handleOkClick" prefHeight="30.0" prefWidth="120.0" text="OK">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin></Button>
-                <Button fx:id="cancle" onAction="#handleCancelClick" prefHeight="30.0" prefWidth="120.0" text="%btn.anulo" />
-            </HBox>
+<AnchorPane prefHeight="440.0" prefWidth="450.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriShtoOrarController">
+    <children>
+        <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+            </padding>
+            <children>
+
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Shto Orar të Ri Konsultimesh">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Text>
+
+                <VBox spacing="14.0" style="-fx-background-color: #1A1A1A; -fx-padding: 20px; -fx-background-radius: 12px; -fx-border-color: #2D2D2D; -fx-border-radius: 12px;" VBox.vgrow="ALWAYS">
+                    <children>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lenda / Course">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Text>
+                                <ChoiceBox fx:id="lendaChoiceBox" maxWidth="1.7976931348623157E308" prefHeight="32.0" style="-fx-background-color: #242424; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-cursor: hand;" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dita e Javës / Day of Week">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Text>
+                                <ChoiceBox fx:id="ditaChoiceBox" maxWidth="1.7976931348623157E308" prefHeight="32.0" style="-fx-background-color: #242424; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-cursor: hand;" />
+                            </children>
+                        </VBox>
+
+                        <HBox spacing="15.0">
+                            <children>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ora (Hour)">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Text>
+                                        <Spinner fx:id="hourSpinner" editable="true" maxWidth="1.7976931348623157E308" prefHeight="32.0" style="-fx-background-color: #242424; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-cursor: hand;" />
+                                    </children>
+                                </VBox>
+                                <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minuta (Minute)">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Text>
+                                        <Spinner fx:id="minuteSpinner" editable="true" maxWidth="1.7976931348623157E308" prefHeight="32.0" style="-fx-background-color: #242424; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-cursor: hand;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Text fill="#E0E0E0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kohëzgjatja (Kohëzgjatja në Minuta / Duration in Mins)">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Text>
+                                <Spinner fx:id="durationSpinner" editable="true" maxWidth="1.7976931348623157E308" prefHeight="32.0" style="-fx-background-color: #242424; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-cursor: hand;" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleCancelClick" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #2D2D2D; -fx-text-fill: #E0E0E0; -fx-background-radius: 6; -fx-border-color: #444444; -fx-border-radius: 6; -fx-font-weight: bold; -fx-cursor: hand;" text="Anulo" />
+                        <Button mnemonicParsing="false" onAction="#handleOkClick" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #FFB3B3; -fx-text-fill: #121212; -fx-background-radius: 6; -fx-font-weight: bold; -fx-cursor: hand;" text="Ruaj Orarin" />
+                    </children>
+                </HBox>
+
+            </children>
         </VBox>
-    </StackPane>
+    </children>
 </AnchorPane>

@@ -1,21 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentiFeedbackController">
+<AnchorPane prefHeight="350.0" prefWidth="410.0"
+            style="-fx-background-color: #121212; -fx-padding: 5;"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.StudentiFeedbackController">
+    <children>
 
-    <VBox alignment="CENTER" layoutX="100" layoutY="50" spacing="15.0">
-        <Label style="-fx-font-size: 18px;" text="%lbl.giveFeedback" />
+        <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="380.0" spacing="12.0"
+                      style="-fx-background-color: #1E1E1E; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 12, 0.0, 0.0, 6.0);">
+                    <padding>
+                        <Insets bottom="16.0" left="20.0" right="20.0" top="16.0" />
+                    </padding>
+                    <children>
 
-        <TextArea fx:id="komentiField" prefHeight="100" prefWidth="400" promptText="%txta.writeComment" wrapText="true" />
+                        <Label text="%lbl.giveFeedback" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="4.0" />
+                            </VBox.margin>
+                        </Label>
 
-        <ComboBox fx:id="vleresimiCombo" prefWidth="200" promptText="%cmbbx.selectEvaluation" />
+                        <VBox spacing="8.0">
+                            <children>
+                                <ComboBox fx:id="profesoriCombo" maxWidth="1.7976931348623157E308" prefHeight="30.0"
+                                          promptText="%cmbbx.selectProfessor"
+                                          style="-fx-background-color: #ffb3b3; -fx-mark-color: #FFB3B3; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-text-fill: white;" />
 
-    </VBox>
+                                <ComboBox fx:id="lendaCombo" maxWidth="1.7976931348623157E308" prefHeight="30.0"
+                                          promptText="%cmbbx.selectSubject"
+                                          style="-fx-background-color: #ffb3b3; -fx-mark-color: #FFB3B3; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-text-fill: white;" />
 
-     <Button layoutX="255.0" layoutY="343.0" onAction="#handleSubmitFeedback" text="%btn.send" />
-    <ComboBox fx:id="profesoriCombo" layoutX="201.0" layoutY="251.0" prefWidth="200" promptText="%cmbbx.selectProfessor" />
-    <ComboBox fx:id="lendaCombo" layoutX="200.0" layoutY="291.0" prefWidth="200" promptText="%cmbbx.selectSubject" />
+                                <ComboBox fx:id="vleresimiCombo" maxWidth="1.7976931348623157E308" prefHeight="30.0"
+                                          promptText="%cmbbx.selectEvaluation"
+                                          style="-fx-background-color: #ffb3b3; -fx-mark-color: #FFB3B3; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-text-fill: white;" />
+                            </children>
+                        </VBox>
 
+                        <VBox spacing="4.0">
+                            <children>
+                                <TextArea fx:id="komentiField" prefHeight="95.0" prefWidth="340.0"
+                                          promptText="%txta.writeComment" wrapText="true"
+                                          style="-fx-control-inner-background: #2A2A2A; -fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 1;" />
+                            </children>
+                            <VBox.margin>
+                                <Insets top="2.0" />
+                            </VBox.margin>
+                        </VBox>
+
+                        <Button mnemonicParsing="false" onAction="#handleSubmitFeedback" prefHeight="32.0" prefWidth="180.0"
+                                style="-fx-background-color: #FFB3B3; -fx-text-fill: #121212; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;"
+                                text="%btn.send">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="4.0" />
+                            </VBox.margin>
+                        </Button>
+
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+
+    </children>
 </AnchorPane>

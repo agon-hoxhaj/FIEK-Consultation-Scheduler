@@ -29,6 +29,7 @@ public class ProfesoriOraretController extends BaseController{
     @FXML
     private ChoiceBox<String> choiceBoxProfesoriOraret;
 
+    @FXML
     public void handleShtoOrarClick(){
 
         String title = SceneManager.getInstance()
@@ -72,40 +73,50 @@ public class ProfesoriOraretController extends BaseController{
         flowPaneProfesoriOraret.getChildren().clear();
 
         String selectedOption = choiceBoxProfesoriOraret.getValue();
-        if (selectedOption == null) { return;}
+        if (selectedOption == null) { return; }
 
         Integer dnsId = dnsNameToIdMap.get(selectedOption);
         if (dnsId == null) return;
 
         activeOraret = orariService.getActiveOraret(dnsId);
 
-        flowPaneProfesoriOraret.setVgap(20);
-        flowPaneProfesoriOraret.setHgap(20);
-        flowPaneProfesoriOraret.setStyle("-fx-background-color: #f0f0f0;");
-        flowPaneProfesoriOraret.setPadding(new Insets(10, 20, 10, 20));
-
+        flowPaneProfesoriOraret.setVgap(15);
+        flowPaneProfesoriOraret.setHgap(15);
+        flowPaneProfesoriOraret.setStyle("-fx-background-color: #1A1A1A;");
+        flowPaneProfesoriOraret.setPadding(new Insets(15));
         for (Orari orari : activeOraret) {
             String buttonName = orari.getDita().name() + "\n" +
                     orari.getOraFillimit() + " - " + orari.getOraMbarimit();
             Button button = new Button(buttonName);
-            button.setPrefWidth(300);
-            button.setPrefHeight(50);
-            button.setOnAction(event -> {
+            button.setPrefWidth(260);
+            button.setPrefHeight(60);
+            button.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+            button.setStyle(
+                    "-fx-background-color: #242424; " +
+                            "-fx-text-fill: #FFFFFF; " +
+                            "-fx-font-weight: bold; " +
+                            "-fx-background-radius: 8px; " +
+                            "-fx-border-color: #3A3A3A; " +
+                            "-fx-border-radius: 8px; " +
+                            "-fx-cursor: hand;"
+            );
+            button.setOnMouseEntered(e -> button.setStyle("-fx-background-color: #2D2426; -fx-text-fill: #FFB3B3; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-border-color: #FFB3B3; -fx-border-radius: 8px; -fx-cursor: hand;"));
+            button.setOnMouseExited(e -> button.setStyle("-fx-background-color: #242424; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-border-color: #3A3A3A; -fx-border-radius: 8px; -fx-cursor: hand;"));
 
+            button.setOnAction(event -> {
                 Optional<ButtonType> result;
                 if(LanguageManager.getInstance().getLocale().equals(new Locale("sq"))){
-                    result =showConfirmAlert(Alert.AlertType.CONFIRMATION,"Konfirmo fshirjen","Jeni i sigurtë që dëshironi të fshini këtë orar?");
-                }else{
-                    result =showConfirmAlert(Alert.AlertType.CONFIRMATION,"Delete Confirmation","Are you sure you want to delete this schedule?");
+                    result = showConfirmAlert(Alert.AlertType.CONFIRMATION, "Konfirmo fshirjen", "Jeni i sigurtë që dëshironi të fshini këtë orar?");
+                } else {
+                    result = showConfirmAlert(Alert.AlertType.CONFIRMATION, "Delete Confirmation", "Are you sure you want to delete this schedule?");
                 }
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    UpdateOrariDto updateOrariDto= new UpdateOrariDto(orari.getId(),false);
+                    UpdateOrariDto updateOrariDto = new UpdateOrariDto(orari.getId(), false);
                     orariService.update(updateOrariDto);
-                    updateFlowPane();
+                    updateFlowPane(); // Refresh view
                 }
             });
             flowPaneProfesoriOraret.getChildren().add(button);
         }
-
     }
 }

@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-
-<ScrollPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataStudentatController">
-   <content>
-      <FlowPane prefHeight="400.0" prefWidth="598.0">
-         <children>
-            <PieChart fx:id="pieChart" prefHeight="500" prefWidth="700" />
-         </children>
-      </FlowPane>
-   </content>
-</ScrollPane>
+<VBox alignment="TOP_LEFT" prefHeight="500.0" prefWidth="750.0" spacing="15.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataStudentatController">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+    <children>
+        <Label text="Statistikat e Studentëve" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <StackPane style="-fx-background-color: #1A1A1A; -fx-background-radius: 12px; -fx-border-color: #2D2D2D; -fx-border-width: 1px; -fx-border-radius: 12px;" VBox.vgrow="ALWAYS">
+            <children>
+                <PieChart fx:id="pieChart" labelsVisible="true" legendVisible="true" style="-fx-background-color: transparent;" stylesheets="@../Styles/chartStyle.css" />
+            </children>
+        </StackPane>
+    </children>
+</VBox>

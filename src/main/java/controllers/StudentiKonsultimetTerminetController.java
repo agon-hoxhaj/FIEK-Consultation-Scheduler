@@ -2,10 +2,12 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -21,13 +23,14 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.*;
 
-public class StudentiKonsultimetTerminetController extends BaseController{
+public class StudentiKonsultimetTerminetController extends BaseController {
 
     private DNSLService dnslService = new DNSLService();
     private StudentService studentService = new StudentService();
     private OrariService orariService = new OrariService();
     private OrariDataService orariDataService = new OrariDataService();
-    private TerminetService terminService = new  TerminetService();
+    private TerminetService terminService = new TerminetService();
+
     @FXML
     private AnchorPane anchorTerminetRezervuara;
 
@@ -43,54 +46,63 @@ public class StudentiKonsultimetTerminetController extends BaseController{
     private Map<String, Integer> dnsNameToIdMap = new HashMap<>();
 
     boolean isAlbanian = LanguageManager.getInstance().getLocale().getLanguage().equals("sq");
+
     @FXML
     public void initialize() {
         try {
             orariDataService.generateValidOrareData();
             int studentId = SessionManager.getInstance().getStudentId();
-            Student student= studentService.getById(studentId);
-            String condition="WHERE id_drejtimi_niveli_semestri = "+student.getStudimi();
-            ArrayList<DrejtimiNiveliSemestriLenda> listDNSL= dnslService.getAll(condition);
+            Student student = studentService.getById(studentId);
+            String condition = "WHERE id_drejtimi_niveli_semestri = " + student.getStudimi();
+            ArrayList<DrejtimiNiveliSemestriLenda> listDNSL = dnslService.getAll(condition);
             dnsNameToIdMap.clear();
             List<String> displayList = new ArrayList<>();
-            List<Integer> dnslIds = new ArrayList<>();
             String lendaName;
+
             for (DrejtimiNiveliSemestriLenda DNSL : listDNSL) {
-                dnslIds.add(DNSL.getId());
-                if(isAlbanian) {
-                    lendaName=dnslService.getNameEnglishByid(DNSL.getId());
+                if (isAlbanian) {
+                    lendaName = dnslService.getNameEnglishByid(DNSL.getId());
                     displayList.add(lendaName);
                     dnsNameToIdMap.put(lendaName, DNSL.getId());
-                }else {
+                } else {
                     lendaName = dnslService.getNameByid(DNSL.getId());
                     displayList.add(lendaName);
                     dnsNameToIdMap.put(lendaName, DNSL.getId());
                 }
             }
+
             if (isAlbanian) {
                 lendaChoiceBox.setValue("Zgjidh lenden");
             } else {
                 lendaChoiceBox.setValue("Select subject");
             }
+
             lendaChoiceBox.getItems().clear();
             for (String lenda : displayList) {
                 lendaChoiceBox.getItems().add(lenda);
             }
+
             lendaChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-                if (newVal != null) {
-                    int dnslId = dnsNameToIdMap.get(newVal);
-                    updateFlowPane(dnslId);
+                if (newVal != null && !newVal.equals("Zgjidh lenden") && !newVal.equals("Select subject")) {
+                    Integer dnslId = dnsNameToIdMap.get(newVal);
+                    if (dnslId != null) {
+                        updateFlowPane(dnslId);
+                    }
                 }
             });
-            flowTerminetRezervuara.setHgap(10);
-            flowTerminetRezervuara.setVgap(10);
+
+            // Layout constraints matching theme layout
+            flowTerminetRezervuara.setHgap(15);
+            flowTerminetRezervuara.setVgap(15);
             flowTerminetRezervuara.setPadding(new Insets(10));
+            flowTerminetRezervuara.setStyle("-fx-background-color: transparent;");
+
             updateReservedAppointmentsFlowPane();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            if(isAlbanian){
-                showAlert(Alert.AlertType.ERROR,"Error","U shfaq nje problem! Ju lutem provoni perseri!");
-            }else {
+            if (isAlbanian) {
+                showAlert(Alert.AlertType.ERROR, "Error", "U shfaq nje problem! Ju lutem provoni perseri!");
+            } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "There was a problem! Please try again!");
             }
         }
@@ -101,7 +113,7 @@ public class StudentiKonsultimetTerminetController extends BaseController{
         orariDataService.generateValidOrareData();
         List<Orari> activeOraret = orariService.getActiveOraret(dnslId);
         configureFlowPaneStyle();
-        List<Button> buttonsToAdd = new ArrayList<>();
+        List<VBox> cardsToAdd = new ArrayList<>();
 
         for (Orari orari : activeOraret) {
             List<OrariData> datat = orariDataService.getValidOrariDataByOrarId(orari.getId());
@@ -109,29 +121,82 @@ public class StudentiKonsultimetTerminetController extends BaseController{
                 int usedSlots = orariService.countReservedTerminet(orariData.getId());
                 if (usedSlots >= 1) continue;
                 String subjectName = lendaChoiceBox.getValue();
-                Button button = createSlotButton(dnslId, orari, orariData, subjectName);
-                buttonsToAdd.add(button);
+
+                // Replaced button factory with modular dark interactive cards
+                VBox card = createAvailableSlotCard(dnslId, orari, orariData, subjectName);
+                cardsToAdd.add(card);
             }
         }
-        flowStudentiKonsultimetTerminet.getChildren().addAll(buttonsToAdd);
+        flowStudentiKonsultimetTerminet.getChildren().addAll(cardsToAdd);
     }
 
     private void configureFlowPaneStyle() {
-        flowStudentiKonsultimetTerminet.setVgap(20);
-        flowStudentiKonsultimetTerminet.setHgap(20);
-        flowStudentiKonsultimetTerminet.setStyle("-fx-background-color: #f0f0f0;");
-        flowStudentiKonsultimetTerminet.setPadding(new Insets(10, 20, 10, 20));
+        flowStudentiKonsultimetTerminet.setVgap(15);
+        flowStudentiKonsultimetTerminet.setHgap(15);
+        flowStudentiKonsultimetTerminet.setStyle("-fx-background-color: transparent;");
+        flowStudentiKonsultimetTerminet.setPadding(new Insets(10, 5, 10, 5));
     }
 
-    private Button createSlotButton(int dnslId, Orari orari, OrariData orariData, String subjectName) {
+    /**
+     * Creates a beautifully styled, clickable dark layout container for available slots
+     */
+    private VBox createAvailableSlotCard(int dnslId, Orari orari, OrariData orariData, String subjectName) {
         LocalTime slotTime = orari.getOraFillimit();
         LocalTime slotEndTime = orari.getOraMbarimit();
-        String buttonName = orariData.getData() + " - " + orari.getDita().name() + "\n" +
-                slotTime + " - " + slotEndTime + "\n" + subjectName;
-        Button button = new Button(buttonName);
-        button.setPrefWidth(500);
-        button.setPrefHeight(70);
-        button.setOnAction(event -> {
+
+        VBox card = new VBox();
+        card.setAlignment(Pos.CENTER_LEFT);
+        card.setSpacing(5.0);
+        card.setPrefWidth(250.0);
+        card.setPrefHeight(85.0);
+        card.setPadding(new Insets(12, 15, 12, 15));
+
+        // Dark theme frame style rules
+        card.setStyle(
+                "-fx-background-color: #1A1A1A; " +
+                        "-fx-border-color: #3A3A3A; " +
+                        "-fx-border-width: 1px; " +
+                        "-fx-border-radius: 8px; " +
+                        "-fx-background-radius: 8px; " +
+                        "-fx-cursor: hand;"
+        );
+
+        // Hover effect listener transitions
+        card.setOnMouseEntered(e -> card.setStyle(
+                "-fx-background-color: #222222; " +
+                        "-fx-border-color: #FFB3B3; " + // Soft Pink highlight focus border on hover
+                        "-fx-border-width: 1px; " +
+                        "-fx-border-radius: 8px; " +
+                        "-fx-background-radius: 8px; " +
+                        "-fx-cursor: hand;"
+        ));
+
+        card.setOnMouseExited(e -> card.setStyle(
+                "-fx-background-color: #1A1A1A; " +
+                        "-fx-border-color: #3A3A3A; " +
+                        "-fx-border-width: 1px; " +
+                        "-fx-border-radius: 8px; " +
+                        "-fx-background-radius: 8px; " +
+                        "-fx-cursor: hand;"
+        ));
+
+        Label lblDate = new Label(orariData.getData() + " - " + orari.getDita().name());
+        lblDate.setFont(Font.font("System", FontWeight.BOLD, 12));
+        lblDate.setStyle("-fx-text-fill: #E0E0E0;");
+
+        Label lblTime = new Label(slotTime + " - " + slotEndTime);
+        lblTime.setFont(Font.font("System", FontWeight.SEMI_BOLD, 12));
+        lblTime.setStyle("-fx-text-fill: #FFB3B3;"); // Primary pink time accent string
+
+        Label lblSubject = new Label(subjectName);
+        lblSubject.setFont(Font.font("System", 11));
+        lblSubject.setStyle("-fx-text-fill: #8A8A8A;");
+        lblSubject.setWrapText(true);
+
+        card.getChildren().addAll(lblDate, lblTime, lblSubject);
+
+        // Retained all selection logic hooks untouched
+        card.setOnMouseClicked(event -> {
             int studentId = SessionManager.getInstance().getStudentId();
             Date date = orariData.getData();
             LocalDate localDate;
@@ -148,12 +213,14 @@ public class StudentiKonsultimetTerminetController extends BaseController{
                         isAlbanian ? "Ju keni rezervuar tashmë këtë termin." : "You have already reserved this appointment.");
                 return;
             }
+
             TextInputDialog inputDialog = new TextInputDialog();
             inputDialog.setTitle(isAlbanian ? "Arsyeja e konsultimit" : "Reason for Consultation");
             inputDialog.setHeaderText(isAlbanian ?
                     "Ju lutem shkruani arsyen për konsultim:" :
                     "Please enter the reason for this consultation:");
             inputDialog.setContentText(isAlbanian ? "Arsyeja:" : "Reason:");
+
             TextField inputField = inputDialog.getEditor();
             Button okButton = (Button) inputDialog.getDialogPane().lookupButton(ButtonType.OK);
             okButton.setDisable(true);
@@ -161,6 +228,7 @@ public class StudentiKonsultimetTerminetController extends BaseController{
             inputField.textProperty().addListener((obs, oldText, newText) -> {
                 okButton.setDisable(newText.trim().isEmpty());
             });
+
             Optional<String> reasonResult = inputDialog.showAndWait();
             reasonResult.ifPresent(reason -> {
                 reason = reason.trim();
@@ -200,23 +268,28 @@ public class StudentiKonsultimetTerminetController extends BaseController{
                 }
             });
         });
-        return button;
+        return card;
     }
 
-    private void updateReservedAppointmentsFlowPane() {
+    public void updateReservedAppointmentsFlowPane() {
         flowTerminetRezervuara.getChildren().clear();
         int studentId = SessionManager.getInstance().getStudentId();
         List<Terminet> reservedAppointments = terminService.getReservedValidAppointmentsByStudent(studentId);
 
         if (reservedAppointments.isEmpty()) {
-            anchorTerminetRezervuara.setPrefHeight(80);
-            anchorTerminetRezervuara.setMinHeight(80);
-            anchorTerminetRezervuara.setMaxHeight(80);
+            anchorTerminetRezervuara.setPrefHeight(100);
+            anchorTerminetRezervuara.setMinHeight(100);
+            anchorTerminetRezervuara.setMaxHeight(100);
+
             LanguageManager languageManager = LanguageManager.getInstance();
             String string = languageManager.getResourceBundle().getString("txt.nukKaRezervime");
             Text text = new Text(string);
-            text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-            text.setFill(Color.RED);
+
+            text.setFont(Font.font("System", FontWeight.BOLD, 14));
+            text.setFill(Color.web("#FF6B6B")); // Maintains your alert coral-red color
+
+            text.setWrappingWidth(350);
+
             flowTerminetRezervuara.getChildren().add(text);
             return;
         } else {
@@ -233,13 +306,60 @@ public class StudentiKonsultimetTerminetController extends BaseController{
             String subjectName = isAlbanian ?
                     dnslService.getNameByid(orari.getIdDrejtimiNiveliSemestriLenda()) :
                     dnslService.getNameEnglishByid(orari.getIdDrejtimiNiveliSemestriLenda());
-            String buttonText = dateStr + " - " + orari.getDita().name() + "\n" +
-                    timeStr + " - " + orari.getOraMbarimit() + "\n" + subjectName;
-            Button reservedButton = new Button(buttonText);
-            reservedButton.setPrefWidth(500);
-            reservedButton.setPrefHeight(70);
-            reservedButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-            reservedButton.setOnAction(event -> {
+
+            // Created dynamic custom card containers for Booked Appointments
+            VBox reservedCard = new VBox();
+            reservedCard.setAlignment(Pos.CENTER_LEFT);
+            reservedCard.setSpacing(5.0);
+            reservedCard.setPrefWidth(250.0);
+            reservedCard.setPrefHeight(85.0);
+            reservedCard.setPadding(new Insets(12, 15, 12, 15));
+
+            // Clean dark green card style base to preserve distinct recognition status
+            reservedCard.setStyle(
+                    "-fx-background-color: #142E1B; " + // Emerald dark background shade
+                            "-fx-border-color: #2E6B3E; " +
+                            "-fx-border-width: 1px; " +
+                            "-fx-border-radius: 8px; " +
+                            "-fx-background-radius: 8px; " +
+                            "-fx-cursor: hand;"
+            );
+
+            reservedCard.setOnMouseEntered(e -> reservedCard.setStyle(
+                    "-fx-background-color: #1B3F25; " +
+                            "-fx-border-color: #4CAF50; " + // Bright green tracking alert frame on hover action
+                            "-fx-border-width: 1px; " +
+                            "-fx-border-radius: 8px; " +
+                            "-fx-background-radius: 8px; " +
+                            "-fx-cursor: hand;"
+            ));
+
+            reservedCard.setOnMouseExited(e -> reservedCard.setStyle(
+                    "-fx-background-color: #142E1B; " +
+                            "-fx-border-color: #2E6B3E; " +
+                            "-fx-border-width: 1px; " +
+                            "-fx-border-radius: 8px; " +
+                            "-fx-background-radius: 8px; " +
+                            "-fx-cursor: hand;"
+            ));
+
+            Label lblDate = new Label(dateStr + " - " + orari.getDita().name());
+            lblDate.setFont(Font.font("System", FontWeight.BOLD, 12));
+            lblDate.setStyle("-fx-text-fill: #E0E0E0;");
+
+            Label lblTime = new Label(timeStr + " - " + orari.getOraMbarimit());
+            lblTime.setFont(Font.font("System", FontWeight.SEMI_BOLD, 12));
+            lblTime.setStyle("-fx-text-fill: #81C784;"); // Green highlight timestamp accent text
+
+            Label lblSubject = new Label(subjectName);
+            lblSubject.setFont(Font.font("System", 11));
+            lblSubject.setStyle("-fx-text-fill: #A5CFA3;");
+            lblSubject.setWrapText(true);
+
+            reservedCard.getChildren().addAll(lblDate, lblTime, lblSubject);
+
+            // Intact execution block logic mapping
+            reservedCard.setOnMouseClicked(event -> {
                 Alert confirmCancel = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmCancel.setTitle(isAlbanian ? "Anulo Terminin" : "Cancel Appointment");
                 confirmCancel.setHeaderText(isAlbanian ?
@@ -265,8 +385,7 @@ public class StudentiKonsultimetTerminetController extends BaseController{
                     }
                 }
             });
-            flowTerminetRezervuara.getChildren().add(reservedButton);
+            flowTerminetRezervuara.getChildren().add(reservedCard);
         }
     }
-
 }

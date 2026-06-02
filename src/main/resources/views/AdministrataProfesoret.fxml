@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataProfesoretController">
-   <children>
-      <ScrollPane fx:id="scrollPane" layoutX="166.0" layoutY="66.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <content>
-            <FlowPane fx:id="flowPane" prefHeight="399.0" prefWidth="598.0">
-               <children>
-                   <BarChart fx:id="barChart" layoutX="50" layoutY="50" prefHeight="327.0" prefWidth="538.0" title="%txt.Statistika">
-                       <xAxis>
-                           <CategoryAxis fx:id="xAxis" label="Drejtimet" />
-                       </xAxis>
-                       <yAxis>
-                           <NumberAxis fx:id="yAxis" label="Numri i profesoreve" />
-                       </yAxis>
-                   </BarChart>
-               </children></FlowPane>
-         </content>
-      </ScrollPane>
-   </children>
-</AnchorPane>
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="650.0" prefWidth="780.0" style="-fx-background-color: transparent; -fx-background: #000000; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministrataProfesoretController">
+    <content>
+        <VBox spacing="20.0" style="-fx-background-color: #121212;">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <children>
+
+                <Label text="Përmbledhja e Departamentit" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+
+                <FlowPane fx:id="flowPane" hgap="10.0" style="-fx-background-color: transparent; -fx-text-background-color: #121212;" vgap="10.0" />
+
+                <Separator style="-fx-background-color: #2D2D2D; -fx-opacity: 0.4;" />
+
+                <Label text="Statistikat e Profesorëve" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+
+                <StackPane minHeight="450.0" style="-fx-background-color: #1A1A1A; -fx-background-radius: 12px; -fx-border-color: #2D2D2D; -fx-border-width: 1px; -fx-border-radius: 12px;" VBox.vgrow="ALWAYS">
+                    <children>
+                        <BarChart fx:id="barChart" legendVisible="false" style="-fx-background-color: transparent;" stylesheets="@../Styles/chartStyle.css" title="%txt.Statistika">
+                            <xAxis>
+                                <CategoryAxis label="Drejtimet" fx:id="xAxis" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="yAxis" label="Numri i profesoreve" />
+                            </yAxis>
+                        </BarChart>
+                    </children>
+                </StackPane>
+
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

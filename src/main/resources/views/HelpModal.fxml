@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" spacing="15.0" style="-fx-background-color: #1A1A1A; -fx-border-color: #2D2D2D; -fx-border-width: 1px; -fx-border-radius: 8; -fx-background-radius: 8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HelpModalController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Label text="%lbl.helpTitle" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #121212; -fx-border-color: #2D2D2D; -fx-border-radius: 6;" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox spacing="14.0" style="-fx-background-color: #121212; -fx-padding: 15;">
+                    <children>
+
+                        <Label text="%txt.helpContent" textFill="#E0E0E0" wrapText="true">
+                            <font><Font size="13.0" /></font>
+                        </Label>
+
+                        <Label text="System Requirements / Rregullat" textFill="#FFB3B3">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Label>
+
+                        <Label text="• Rezervimet duhet të bëhen të paktën 24 orë përpara.
+                                     • Cancelations must be submitted 2 hours prior to the slot." textFill="#CCCCCC" wrapText="true">
+                            <font><Font size="12.0" /></font>
+                        </Label>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <Button mnemonicParsing="false" onAction="#handleClose" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #2D2D2D; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;" text="%btn.close" />
+    </children>
+</VBox>

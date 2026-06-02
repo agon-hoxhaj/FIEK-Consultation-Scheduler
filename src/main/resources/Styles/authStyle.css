@@ -1,0 +1,18 @@
+
+.pink-action-button {
+    -fx-background-color: #FFB3B3;
+    -fx-text-fill: #121212;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 8px 24px 8px 24px;
+}
+.pink-action-button:hover {
+    -fx-background-color: #FFF0F0;
+    -fx-text-fill: #121212;
+}
+.pink-action-button:pressed {
+    -fx-background-color: #D49393;
+}

@@ -53,6 +53,19 @@ public class SceneManager {
         Parent parent = getParent(path);
         currentPath = path;
         scene.setRoot(parent);
+
+        scene.addEventFilter(javafx.scene.input.KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == javafx.scene.input.KeyCode.F1) {
+                event.consume(); // Prevents other sub-controls from swallowing the keypress
+                javafx.application.Platform.runLater(() -> {
+                    try {
+                        new controllers.BaseController() {}.handleHelp();
+                    } catch (Exception e) {
+                        System.err.println("Global F1 Error: " + e.getMessage());
+                    }
+                });
+            }
+        });
     }
 
     private void loadParent(String path, ScrollPane scrollPane) throws Exception {
@@ -100,4 +113,5 @@ public class SceneManager {
     }
     public LanguageManager getLanguageManager() {
         return languageManager;
-    }}
+    }
+}

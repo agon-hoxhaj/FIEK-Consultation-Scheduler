@@ -131,13 +131,13 @@ public class AdministrataProfesoretController extends BaseController {
 
             if(LanguageManager.getInstance().getLocale().equals(new Locale("sq"))) {
                 Label emriDrejtimit = new Label("Drejtimi: " + drejtimi);
-                emriDrejtimit.setStyle("-fx-font-weight: bold;");
+                emriDrejtimit.setStyle("-fx-font-weight: bold; -fx-text-fill: #121212;");
 
                 Label numriProf = new Label("Profesorë: " + numri);
                 karta.getChildren().addAll(emriDrejtimit, numriProf);
             }else{
                 Label emriDrejtimit = new Label("Department: " + drejtimi);
-                emriDrejtimit.setStyle("-fx-font-weight: bold;");
+                emriDrejtimit.setStyle("-fx-font-weight: bold; -fx-text-fill: #121212;");
 
                 Label numriProf = new Label("Professors: " + numri);
                 karta.getChildren().addAll(emriDrejtimit, numriProf);

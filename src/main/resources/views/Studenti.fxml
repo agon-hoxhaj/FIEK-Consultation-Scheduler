@@ -1,55 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.08584337349397592" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentiPageController">
+<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0"
+           style="-fx-background-color: #121212; -fx-box-border: transparent; -fx-padding: 0;"
+           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controllers.StudentiPageController">
     <items>
-        <!-- Top Bar -->
-        <AnchorPane maxHeight="30.0" minHeight="30.0" prefHeight="57.0" prefWidth="598.0" style="-fx-background-color: gray;">
+
+        <AnchorPane maxHeight="45.0" minHeight="45.0" prefHeight="45.0" prefWidth="598.0"
+                    style="-fx-background-color: #1E1E1E; -fx-border-color: #2D2D2D; -fx-border-width: 0 0 1 0;">
             <children>
-                <Button layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: white;" text="%btn.sign_out" textAlignment="CENTER" />
+                <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="598.0" spacing="15.0"
+                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <padding>
+                        <Insets left="15.0" right="15.0" />
+                    </padding>
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleSignOut" prefHeight="28.0" prefWidth="90.0"
+                                style="-fx-background-color: transparent; -fx-text-fill: #FFB3B3; -fx-border-color: #FFB3B3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;"
+                                text="%btn.sign_out" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#handleHelp" prefHeight="28.0" prefWidth="70.0"
+                                style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-border-color: #A0A0A0; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-weight: bold;"
+                                text="Help (F1)" textAlignment="CENTER" />
 
-                <Text fill="WHITE" layoutX="263.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" textAlignment="CENTER" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="262.6">
-                    <font>
-                        <Font name="System Bold" size="17.0" />
-                    </font>
-                </Text>
+                        <Region HBox.hgrow="ALWAYS" />
 
-                <Button layoutX="457.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: lightblue;" text="%btn.gjuha" textAlignment="CENTER" AnchorPane.rightAnchor="2.0" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" textAlignment="CENTER">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Text>
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Button mnemonicParsing="false" onAction="#handleButtonGjuhaClick" prefHeight="28.0" prefWidth="110.0"
+                                style="-fx-background-color: transparent; -fx-text-fill: #FFB3B3; -fx-border-color: #FFB3B3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;"
+                                text="%btn.gjuha" textAlignment="CENTER" />
+                    </children>
+                </HBox>
             </children>
         </AnchorPane>
 
-        <!-- Body SplitPane -->
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #121212;">
             <children>
-                <SplitPane dividerPositions="0.3119973190348525" layoutX="-1.0" layoutY="3.0" prefHeight="361.6" prefWidth="598.4" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-0.8" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="3.2">
+                <SplitPane dividerPositions="0.32" prefHeight="347.0" prefWidth="598.0"
+                           style="-fx-background-color: transparent; -fx-box-border: transparent; -fx-padding: 0;"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                        <!-- Left Menu -->
-                        <AnchorPane maxWidth="190.0" minWidth="190.0" prefHeight="361.0" prefWidth="190.0" style="-fx-background-color: lightgrey;">
+
+                        <AnchorPane maxWidth="190.0" minWidth="190.0" prefHeight="347.0" prefWidth="190.0"
+                                    style="-fx-background-color: #1A1A1A; -fx-border-color: #2D2D2D; -fx-border-width: 0 1 0 0;">
                             <children>
-                                <Button fx:id="lendetProf" layoutX="5.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLendetClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.lendet" textAlignment="CENTER" />
-
-                                <Button fx:id="konsultTerm" layoutX="5.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleKonsultimetTerminetClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.konsultimetTerminet" textAlignment="CENTER" />
-
-                                <Button fx:id="feedback" layoutX="5.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleFeedbackClick" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: white;" text="%btn.pershtypje" textAlignment="CENTER" />
-                            </children>
-                        </AnchorPane>
-
-                        <!-- Right Content -->
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="416.0">
-                            <children>
-                                <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="360.8" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <VBox alignment="TOP_CENTER" layoutY="15.0" prefWidth="190.0" spacing="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                    <padding>
+                                        <Insets left="12.0" right="12.0" />
+                                    </padding>
                                     <children>
-                                        <ScrollPane fx:id="rightPane" fitToHeight="true" fitToWidth="true" layoutX="104.0" layoutY="80.0" prefHeight="360.8" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                        <Button fx:id="lendetProf" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLendetClick" prefHeight="34.0" prefWidth="166.0"
+                                                style="-fx-background-color: #2A2A2A; -fx-text-fill: #E0E0E0; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;"
+                                                text="%btn.lendet" textAlignment="CENTER" />
+
+                                        <Button fx:id="konsultTerm" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleKonsultimetTerminetClick" prefHeight="34.0" prefWidth="166.0"
+                                                style="-fx-background-color: #2A2A2A; -fx-text-fill: #E0E0E0; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;"
+                                                text="%btn.konsultimetTerminet" textAlignment="CENTER" />
+
+                                        <Button fx:id="feedback" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleFeedbackClick" prefHeight="34.0" prefWidth="166.0"
+                                                style="-fx-background-color: #2A2A2A; -fx-text-fill: #E0E0E0; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-weight: bold;"
+                                                text="%btn.pershtypje" textAlignment="CENTER" />
                                     </children>
-                                </AnchorPane>
+                                </VBox>
                             </children>
                         </AnchorPane>
+
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="404.0" style="-fx-background-color: #121212;">
+                            <children>
+                                <ScrollPane fx:id="rightPane" fitToHeight="true" fitToWidth="true"
+                                            style="-fx-background-color: transparent; -fx-background: #121212; -fx-border-color: transparent;"
+                                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            </children>
+                        </AnchorPane>
+
                     </items>
                 </SplitPane>
             </children>

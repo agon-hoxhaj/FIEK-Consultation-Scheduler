@@ -1,57 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterProfesorController">
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-   <children>
-      <Label layoutX="100.0" layoutY="70.0" text="%lbl.personalNum">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TextField layoutX="245.0" layoutY="66.0" prefHeight="26.0" prefWidth="210.0"  fx:id="personalNumber"/>
-      <Label layoutX="142.0" layoutY="203.0" text="%lbl.email">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TextField layoutX="246.0" layoutY="200.0" prefHeight="26.0" prefWidth="209.0" fx:id="email"  />
-      <Label layoutX="120.0" layoutY="303.0" text="%lbl.gender">
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font>
-      </Label>
-      <CheckBox layoutX="246.0" layoutY="304.0" mnemonicParsing="false" text="%chckbx.female" fx:id="female"/>
-      <CheckBox layoutX="372.0" layoutY="304.0" mnemonicParsing="false" text="%chckbx.male" fx:id="male" />
-      <TextField layoutX="246.0" layoutY="249.0" prefHeight="26.0" prefWidth="209.0" fx:id="phoneNumber"/>
-      <Label layoutX="144.0" layoutY="109.0" text="%lbl.name">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="132.0" layoutY="154.0" text="%lbl.surname">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="91.0" layoutY="252.0" text="%lbl.telephone">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TextField layoutX="245.0" layoutY="106.0" prefHeight="26.0" prefWidth="209.0" fx:id="firstName"/>
-      <TextField layoutX="246.0" layoutY="151.0" prefHeight="26.0" prefWidth="209.0" fx:id="lastName"/>
-      <Button layoutX="462.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" text="%btn.gjuha" />
-      <Button layoutX="39.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleGoBack" text="%btn.back" />
-         <Button layoutX="462.0" layoutY="342.0" mnemonicParsing="false" style="-fx-background-color: #FFB3B3;" text="%btn.register" onAction="#handleRegisterProfessor"/>
-      <Label fx:id="errorGenderLabel" layoutX="300.0" layoutY="330.0" style="-fx-text-fill: red;" text="">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
-</StackPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #121212;"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.RegisterProfesorController">
+
+    <top>
+        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleGoBack" text="%btn.back"
+                        style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-border-color: #A0A0A0; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Button>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button mnemonicParsing="false" onAction="#handleButtonGjuhaClick" text="%btn.gjuha"
+                        style="-fx-background-color: transparent; -fx-text-fill: #FFB3B3; -fx-border-color: #FFB3B3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" />
+            </padding>
+            <children>
+                <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="480.0" spacing="15.0"
+                      style="-fx-background-color: #1E1E1E; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 15, 0.0, 0.0, 8.0);">
+                    <padding>
+                        <Insets bottom="22.0" left="25.0" right="25.0" top="22.0" />
+                    </padding>
+                    <children>
+
+                        <GridPane hgap="15.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+
+                                <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="%lbl.name" textFill="#E0E0E0">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="firstName" prefHeight="28.0"
+                                                   style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="%lbl.surname" textFill="#E0E0E0">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="lastName" prefHeight="28.0"
+                                                   style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="2.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label text="%lbl.personalNum" textFill="#E0E0E0">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="personalNumber" prefHeight="28.0"
+                                                   style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label text="%lbl.email" textFill="#E0E0E0">
+                                            <font><Font name="System Bold" size="12.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="email" prefHeight="28.0"
+                                                   style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                    </children>
+                                </VBox>
+
+                            </children>
+                        </GridPane>
+
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="%lbl.telephone" textFill="#E0E0E0">
+                                    <font><Font name="System Bold" size="12.0" /></font>
+                                </Label>
+                                <TextField fx:id="phoneNumber" prefHeight="28.0"
+                                           style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER" spacing="4.0">
+                            <children>
+                                <Label text="%lbl.gender" textFill="#A0A0A0">
+                                    <font>
+                                        <Font name="System Italic" size="12.0" />
+                                    </font>
+                                </Label>
+                                <HBox alignment="CENTER" spacing="25.0">
+                                    <children>
+                                        <CheckBox fx:id="female" minWidth="-Infinity" mnemonicParsing="false" text="%chckbx.female" textFill="WHITE" style="-fx-cursor: hand;" />
+                                        <CheckBox fx:id="male" minWidth="-Infinity" mnemonicParsing="false" text="%chckbx.male" textFill="WHITE" style="-fx-cursor: hand;" />
+                                    </children>
+                                </HBox>
+                                <Label fx:id="errorGenderLabel" style="-fx-text-fill: #FF6B6B;">
+                                    <font>
+                                        <Font name="System Bold" size="11.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <Button mnemonicParsing="false" onAction="#handleRegisterProfessor" prefHeight="35.0" prefWidth="220.0"
+                                style="-fx-background-color: #FFB3B3; -fx-text-fill: #121212; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;"
+                                text="%btn.register" />
+
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,52 @@
+/* Core Chart Sizing and Padding Rules */
+.chart {
+    -fx-padding: 15px;
+    -fx-background-color: transparent;
+}
+
+/* Main chart title styling text properties */
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+/* Axis Title Labels ("Drejtimet" / "Numri i profesoreve") */
+.axis-label {
+    -fx-text-fill: #E0E0E0;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+/* Axis Scales and Numeric Values Tick Mark Numbers */
+.axis {
+    -fx-tick-label-fill: #A0A0A0;
+    -fx-font-size: 11px;
+    -fx-tick-mark-stroke: #3A3A3A;
+}
+
+/* Remove default gray borders from data windows */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* Clean, subtle dotted horizontal layout gridlines */
+.chart-vertical-grid-lines,
+.chart-horizontal-grid-lines {
+    -fx-stroke: #262626;
+    -fx-stroke-dash-array: 3px, 3px;
+}
+
+/* Remove alternating row colored background strips */
+.chart-alternative-row-binary-alternative,
+.chart-alternative-column-binary-alternative {
+    -fx-fill: transparent;
+}
+
+/* Interactive Cursor Feedback when Hovering Slices/Bars */
+.chart-bar {
+    -fx-cursor: hand;
+}
+#flowPane .vbox .label {
+    -fx-text-fill: #121212 !important;
+}

@@ -1,33 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<SplitPane dividerPositions="0.4146586345381526" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentiKonsultimetTerminetController">
-  <items>
-    <AnchorPane   fx:id="anchorTerminetRezervuara" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: grey;">
-         <children>
-            <FlowPane fx:id="flowTerminetRezervuara" hgap="20.0" layoutX="188.0" layoutY="44.8" minHeight="100.0" prefHeight="112.0" prefWidth="651.0" style="-fx-background-color: white;" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
-            <Text fill="WHITE" layoutX="235.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.studentiTerminet" textAlignment="CENTER" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.97343750000005" AnchorPane.topAnchor="13.6552734375">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="anchorStudentiKonsultimetTerminet" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: grey;">
-          <children>
-              <ChoiceBox fx:id="lendaChoiceBox" layoutX="137.0" layoutY="6.0" maxWidth="600.0" minWidth="179.0" prefHeight="31.0" prefWidth="345.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="168.59999999999997" AnchorPane.topAnchor="6.0" />
-              <Text fill="WHITE" layoutX="42.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.lenda" textAlignment="CENTER" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="522.0">
-                  <font>
-                      <Font name="System Bold" size="17.0" />
-                  </font>
-              </Text>
-              <FlowPane fx:id="flowStudentiKonsultimetTerminet" minHeight="100.0" hgap="20" layoutX="200.0" layoutY="44.8" prefHeight="112.0" prefWidth="651.0" style="-fx-background-color: white;" vgap="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0"/>
-          </children>
-      </AnchorPane>
-  </items>
+
+<SplitPane dividerPositions="0.45" orientation="VERTICAL" prefHeight="350.0" prefWidth="410.0"
+           style="-fx-background-color: #121212; -fx-box-border: transparent; -fx-padding: 5;"
+           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controllers.StudentiKonsultimetTerminetController">
+    <items>
+
+        <AnchorPane fx:id="anchorTerminetRezervuara" minHeight="0.0" minWidth="0.0"
+                    style="-fx-background-color: #1E1E1E; -fx-background-radius: 10; -fx-border-color: #2D2D2D; -fx-border-radius: 10;">
+            <children>
+                <VBox spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <padding>
+                        <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
+                    </padding>
+                    <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.studentiTerminet">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Text>
+
+                        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                            <content>
+                                <FlowPane fx:id="flowTerminetRezervuara" hgap="12.0" vgap="12.0" style="-fx-background-color: transparent;" />
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+        <AnchorPane fx:id="anchorStudentiKonsultimetTerminet" minHeight="0.0" minWidth="0.0"
+                    style="-fx-background-color: #1E1E1E; -fx-background-radius: 10; -fx-border-color: #2D2D2D; -fx-border-radius: 10;">
+            <children>
+                <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <padding>
+                        <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
+                    </padding>
+                    <children>
+
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                            <children>
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%txt.lenda">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Text>
+                                <ChoiceBox fx:id="lendaChoiceBox" maxWidth="1.7976931348623157E308" prefHeight="28.0" style="-fx-background-color: #2A2A2A; -fx-mark-color: #FFB3B3; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+
+                        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                            <content>
+                                <FlowPane fx:id="flowStudentiKonsultimetTerminet" hgap="12.0" vgap="12.0" style="-fx-background-color: transparent;" />
+                            </content>
+                        </ScrollPane>
+
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </items>
 </SplitPane>

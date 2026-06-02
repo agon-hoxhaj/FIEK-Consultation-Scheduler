@@ -1,56 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-   <children>
-      <Label layoutX="146.0" layoutY="100.0" text="%lbl.user">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <TextField fx:id="Username" layoutX="242.0" layoutY="97.0" prefHeight="26.0" prefWidth="210.0" />
-      <Label layoutX="144.0" layoutY="160.0" text="%lbl.password">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="223.0" layoutY="271.0" text="%lbl.chooseRole">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <CheckBox fx:id="Student" layoutX="112.0" layoutY="306.0" mnemonicParsing="false" text="%chckbx.student" />
-      <CheckBox fx:id="Professor" layoutX="260.0" layoutY="306.0" mnemonicParsing="false" text="%chckbx.professor" />
-      <CheckBox fx:id="Admin" layoutX="402.0" layoutY="305.0" mnemonicParsing="false" text="%chckbx.administrator" />
-      <Label layoutX="65.0" layoutY="214.0" text="%lbl.confirmPass">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Button layoutX="427.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleButtonGjuhaClick" text="%btn.gjuha" />
-      <Button layoutX="67.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleGoBack" text="%btn.back" />
-      <Button layoutX="429.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleregister" text="%btn.register" style="-fx-background-color: #FFB3B3" />
-      <Label fx:id="errorUsernameLabel" layoutX="376.0" layoutY="127.0" style="-fx-text-fill: red;" text="">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label fx:id="errorPasswordLabel" layoutX="376.0" layoutY="185.0" style="-fx-text-fill: red;" text="">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label fx:id="errorRetypedPasswordLabel" layoutX="376.0" layoutY="245.0" style="-fx-text-fill: red;" text="">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Label>
-         <PasswordField fx:id="Password" layoutX="246.0" layoutY="157.0" />
-         <PasswordField fx:id="retypedPassword" layoutX="246.0" layoutY="211.0" />
-   </children>
-</AnchorPane>
-</StackPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+
+    <top>
+        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets left="20.0" right="20.0" top="15.0" />
+            </padding>
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleGoBack" style="-fx-background-color: transparent; -fx-text-fill: #A0A0A0; -fx-border-color: #A0A0A0; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="%btn.back">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Button>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button mnemonicParsing="false" onAction="#handleButtonGjuhaClick" style="-fx-background-color: transparent; -fx-text-fill: #FFB3B3; -fx-border-color: #FFB3B3; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="%btn.gjuha">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane alignment="CENTER" prefHeight="340.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" />
+            </padding>
+            <children>
+                <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="345.0" prefWidth="453.0" spacing="6.0" style="-fx-background-color: #1E1E1E; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 15, 0.0, 0.0, 8.0);">
+                    <padding>
+                        <Insets bottom="18.0" left="30.0" right="30.0" top="18.0" />
+                    </padding>
+                    <children>
+
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="%lbl.user" textFill="#E0E0E0">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="Username" prefHeight="28.0" style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                <Label fx:id="errorUsernameLabel" style="-fx-text-fill: #FF6B6B;">
+                                    <font>
+                                        <Font name="System Italic" size="11.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="%lbl.password" textFill="#E0E0E0">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="Password" prefHeight="28.0" style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                <Label fx:id="errorPasswordLabel" style="-fx-text-fill: #FF6B6B;">
+                                    <font>
+                                        <Font name="System Italic" size="11.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="%lbl.confirmPass" textFill="#E0E0E0">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="retypedPassword" prefHeight="28.0" style="-fx-background-color: #2A2A2A; -fx-text-fill: white; -fx-background-radius: 6; -fx-border-color: #3A3A3A; -fx-border-radius: 6;" />
+                                <Label fx:id="errorRetypedPasswordLabel" style="-fx-text-fill: #FF6B6B;">
+                                    <font>
+                                        <Font name="System Italic" size="11.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER" spacing="6.0">
+                            <children>
+                                <Label text="%lbl.chooseRole" textFill="#A0A0A0">
+                                    <font>
+                                        <Font name="System Italic" size="12.0" />
+                                    </font>
+                                </Label>
+                                <HBox alignment="CENTER" spacing="16.0">
+                                    <children>
+                                        <CheckBox fx:id="Student" minWidth="-Infinity" mnemonicParsing="false" style="-fx-cursor: hand;" text="%chckbx.student" textFill="WHITE" />
+                                        <CheckBox fx:id="Professor" minWidth="-Infinity" mnemonicParsing="false" style="-fx-cursor: hand;" text="%chckbx.professor" textFill="WHITE" />
+                                        <CheckBox fx:id="Admin" minWidth="-Infinity" mnemonicParsing="false" style="-fx-cursor: hand;" text="%chckbx.administrator" textFill="WHITE" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="6.0" top="2.0" />
+                            </VBox.margin>
+                        </VBox>
+
+                        <Button mnemonicParsing="false" onAction="#handleregister" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: #FFB3B3; -fx-text-fill: #121212; -fx-background-radius: 8; -fx-font-weight: bold; -fx-cursor: hand;" text="%btn.register">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>

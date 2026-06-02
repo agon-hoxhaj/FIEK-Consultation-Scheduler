@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriFeedbackController">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfesoriFeedbackController">
+    <children>
+        <VBox alignment="TOP_LEFT" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+            </padding>
+            <children>
 
-    <VBox alignment="CENTER" layoutX="50" layoutY="30" spacing="20.0">
-        <Label style="-fx-font-size: 18px;" text="%lbl.receivedFeedback" />
+                <Label text="%lbl.receivedFeedback" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
 
-        <TableView fx:id="feedbackTable" prefHeight="250" prefWidth="500">
-            <columns>
-                <TableColumn fx:id="commentColumn" prefWidth="350" text="%col.comment" />
-                <TableColumn fx:id="evaluationColumn" prefWidth="150.0" text="%col.evaluation" />
-            </columns>
-        </TableView>
-    </VBox>
+                <TableView fx:id="feedbackTable" stylesheets="@../Styles/tableStyle.css" style="-fx-background-color: #1A1A1A; -fx-border-color: #2D2D2D; -fx-border-width: 1px; -fx-border-radius: 8px; -fx-background-radius: 8px;" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="commentColumn" minWidth="200.0" prefWidth="-1.0" text="%col.comment" />
+                        <TableColumn fx:id="evaluationColumn" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" style="-fx-alignment: CENTER;" text="%col.evaluation" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
 
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
