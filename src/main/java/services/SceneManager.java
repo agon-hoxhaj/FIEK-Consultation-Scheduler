@@ -56,7 +56,7 @@ public class SceneManager {
 
         scene.addEventFilter(javafx.scene.input.KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == javafx.scene.input.KeyCode.F1) {
-                event.consume(); // Prevents other sub-controls from swallowing the keypress
+                event.consume();
                 javafx.application.Platform.runLater(() -> {
                     try {
                         new controllers.BaseController() {}.handleHelp();

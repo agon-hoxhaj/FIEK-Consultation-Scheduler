@@ -111,7 +111,7 @@ public class BaseController {
 
             helpStage.initModality(Modality.APPLICATION_MODAL);
 
-            // 5. Match window titles dynamically with translation preferences
+
             String windowTitle = "en".equals(languageManager.getLocale().getLanguage()) ? "Help & Guide" : "Ndihmë";
             helpStage.setTitle(windowTitle);
 
@@ -120,7 +120,7 @@ public class BaseController {
             helpStage.getScene().addEventFilter(javafx.scene.input.KeyEvent.KEY_PRESSED, escEvent -> {
                 if (escEvent.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
                     helpStage.close();
-                    escEvent.consume(); // Stops the keypress from triggering elements behind it
+                    escEvent.consume();
                 }
             });
 

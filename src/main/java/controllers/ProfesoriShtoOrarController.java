@@ -20,10 +20,9 @@ public class ProfesoriShtoOrarController extends BaseController {
     private final OrariService orariService = new OrariService();
 
     @FXML
-    private ChoiceBox<String> lendaChoiceBox; // Added type parameter for clarity
-
+    private ChoiceBox<String> lendaChoiceBox;
     @FXML
-    private ChoiceBox<Object> ditaChoiceBox; // Added type parameter since it holds different Enums
+    private ChoiceBox<Object> ditaChoiceBox;
 
     @FXML
     private Spinner<Integer> hourSpinner;
@@ -31,7 +30,7 @@ public class ProfesoriShtoOrarController extends BaseController {
     @FXML
     private Spinner<Integer> minuteSpinner;
 
-    // FIX 1: Declared the missing duration spinner at the top
+
     @FXML
     private Spinner<Integer> durationSpinner;
 
@@ -56,11 +55,11 @@ public class ProfesoriShtoOrarController extends BaseController {
             }
         }
 
-        // Configure time spinners
+
         hourSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(8, 19, 8));
         minuteSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
 
-        // FIX 2: This line works now because durationSpinner is declared above!
+
         durationSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(5, 120, 30, 5));
 
         DitaJaves[] allDays = DitaJaves.values();
@@ -97,7 +96,6 @@ public class ProfesoriShtoOrarController extends BaseController {
 
     @FXML
     public void handleOkClick() {
-        // Safe check to avoid NullPointerException if a user submits an empty form
         if (lendaChoiceBox.getValue() == null || ditaChoiceBox.getValue() == null) {
             showWarningAlert();
             return;
@@ -122,8 +120,6 @@ public class ProfesoriShtoOrarController extends BaseController {
         }
 
         if (idDNSL > 0 && ditaJaves != null && ditaJavesEnglish != null) {
-
-            // FIX 3: Read the actual dynamic value from your duration spinner
             int durationMinutes = durationSpinner.getValue();
             LocalTime endTime = starTime.plusMinutes(durationMinutes);
 
